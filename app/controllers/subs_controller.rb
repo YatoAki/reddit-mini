@@ -1,5 +1,6 @@
 class SubsController < ApplicationController
   before_action :require_user_login, except: [:index,:show]
+  before_action :require_user_own_sub, only: [:edit,:update,:destroy]
 
   def index
     @subs = Sub.all
@@ -46,6 +47,11 @@ class SubsController < ApplicationController
 
   def sub_params
     params.require(:sub).permit(:name,:detail)
+  end
+
+  def require_user_own_sub
+    return if current_user.subs.find_by_id(params[:id])
+    render json: "Forbidden", status: :forbidden
   end
 
 end
