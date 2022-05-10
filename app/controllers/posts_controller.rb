@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
     before_action :get_sub
     before_action :require_user_login, except: [:show]
-    before_action :require_user_own_sub, only: [:destroy]
+    before_action :require_user_own_post, only: [:destroy]
 
     def show
       @post = Post.find_by_id(params[:id])

@@ -1,5 +1,8 @@
 <h3><%= @post.title %></h3>
 <p><%= @post.content %></p>
-
+<div>Posted by <%= @post.author.username %> | <%= link_to "Delete", sub_post_path(@post.sub,@post), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+} %> </div>
 <br>
 <p><%= link_to "Back to sub",sub_path(@post.sub) %></p>
