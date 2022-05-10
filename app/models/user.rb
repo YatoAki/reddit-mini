@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   after_initialize :ensure_session_token
 
+  has_many :subs
+
   validates :username, presence: true, uniqueness: true
   validates :session_token, presence: true, uniqueness: true
 
