@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       redirect_to subs_url
     else
       flash.now[:errors] = ["Username or password is incorrect"]
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
