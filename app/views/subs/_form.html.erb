@@ -1,0 +1,25 @@
+<%= form_with model: sub do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %><br>
+    <% sub.errors.full_messages_for(:name).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :detail %><br>
+    <%= form.text_area :detail %>
+    <% sub.errors.full_messages_for(:detail).each do |message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
