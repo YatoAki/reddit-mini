@@ -1,4 +1,10 @@
 <h2><%= @sub.name %></h2>
 <h4><%= @sub.detail %></h4>
 
+<br>
+<%= link_to "Delete", sub_path(@sub), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+} %> | <%= link_to "Edit", edit_sub_path(@sub) %>
+<br>
 <p><%= link_to "Home",subs_path %></p>
