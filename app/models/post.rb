@@ -6,5 +6,5 @@ class Post < ApplicationRecord
   belongs_to :sub
 
   validates :title, presence: true
-  validates :content, presence: true, length: {minimum: 10}
+  validates :content, presence: true
 end

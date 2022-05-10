@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
 
     before_action :get_sub
+    before_action :require_user_login, except: [:show]
+    before_action :require_user_own_sub, only: [:destroy]
 
     def show
       @post = Post.find_by_id(params[:id])
@@ -28,6 +30,11 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title,:content)
+    end
+
+    def require_user_own_post
+      return if current_user.posts.find_by_id(params[:id])
+      render json: "Forbidden", status: :forbidden
     end
 
 end

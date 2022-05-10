@@ -5,6 +5,13 @@
   turbo_method: :delete,
   turbo_confirm: "Are you sure?"
 } %> | <%= link_to "Edit", edit_sub_path(@sub) %> </p>
+<small>Total of <%= @sub.posts.length %> posts have been posted</small>
+<h4>Posts</h4>
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><%= link_to post.title, sub_post_path(@sub,post) unless post.id.nil? %></li>
+  <% end %>
+</ul>
 <br>
 
 
@@ -24,13 +31,5 @@
   </div>
 <% end %>
 
-
-<h4>Posts</h4>
-<ul>
-  <% @sub.posts.each do |post| %>
-    <li><%= link_to post.title, sub_post_path(@sub,post) unless post.id.nil? %></li>
-  <% end %>
-</ul>
-<br>
 <br>
 <p><%= link_to "Home",subs_path %></p>

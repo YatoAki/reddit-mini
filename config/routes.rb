@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root "subs#index"
 
   resources :subs do
-    resources :posts
+    resources :posts, only: [:create,:destroy,:show]
   end
   resources :users
   resource :session, only: [:new,:create,:destroy]
