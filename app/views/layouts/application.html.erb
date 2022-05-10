@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+      <%= current_user.username %>
+    <% else %>
+      "You are not login yet"
+    <% end %>
     <%= yield %>
   </body>
 </html>
