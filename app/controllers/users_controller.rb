@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       login_user!(@user)
       redirect_to subs_url
     else
-      render :new
+      render :new,status: :unprocessable_entity
     end
   end
 
