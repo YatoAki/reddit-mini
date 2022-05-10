@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "subs#index"
 
-  resources :subs
+  resources :subs do
+    resources :posts
+  end
   resources :users
   resource :session, only: [:new,:create,:destroy]
 end

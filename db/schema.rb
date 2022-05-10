@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_10_084713) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_10_110946) do
+  create_table "posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content", null: false
+    t.integer "user_id", null: false
+    t.integer "sub_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sub_id"], name: "index_posts_on_sub_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "subs", force: :cascade do |t|
     t.string "name", null: false
     t.text "detail", null: false
@@ -29,5 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_10_084713) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "posts", "subs"
+  add_foreign_key "posts", "users"
   add_foreign_key "subs", "users"
 end

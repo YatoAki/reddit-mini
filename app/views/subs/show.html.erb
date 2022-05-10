@@ -1,10 +1,17 @@
 <h2><%= @sub.name %></h2>
-<h4><%= @sub.detail %></h4>
-<p>Moderated by <%= @sub.moderator.username %></p>
-<br>
+<h5><%= @sub.detail %></h5>
+<p>Moderated by <%= @sub.moderator.username %> |
 <%= link_to "Delete", sub_path(@sub), data: {
   turbo_method: :delete,
   turbo_confirm: "Are you sure?"
-} %> | <%= link_to "Edit", edit_sub_path(@sub) %>
+} %> | <%= link_to "Edit", edit_sub_path(@sub) %> </p>
+<br>
+<h4>Posts</h4>
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li><%= link_to post.title, sub_post_path(@sub,post) %></li>
+  <% end %>
+</ul>
+<br>
 <br>
 <p><%= link_to "Home",subs_path %></p>
