@@ -1,4 +1,5 @@
 class SubsController < ApplicationController
+  before_action :require_user_login, except: [:index,:show]
 
   def index
     @subs = Sub.all
@@ -13,7 +14,7 @@ class SubsController < ApplicationController
   end
 
   def create
-    @sub = Sub.new(sub_params)
+    @sub = current_user.subs.new(sub_params)
     if @sub.save
       redirect_to @sub
     else
