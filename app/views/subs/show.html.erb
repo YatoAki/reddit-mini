@@ -1,5 +1,6 @@
 <h2><%= @sub.name %></h2>
 <h4><%= @sub.detail %></h4>
+<p>Moderated by <%= @sub.moderator.username %></p>
 <br>
 <%= link_to "Delete", sub_path(@sub), data: {
   turbo_method: :delete,
