@@ -6,10 +6,29 @@
   turbo_confirm: "Are you sure?"
 } %> | <%= link_to "Edit", edit_sub_path(@sub) %> </p>
 <br>
+
+
+<h4>Upload your thoughts</h4>
+<%= form_with model: [@sub, @sub.posts.new] do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %><br>
+  </div>
+
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
 <h4>Posts</h4>
 <ul>
   <% @sub.posts.each do |post| %>
-    <li><%= link_to post.title, sub_post_path(@sub,post) %></li>
+    <li><%= link_to post.title, sub_post_path(@sub,post) unless post.id.nil? %></li>
   <% end %>
 </ul>
 <br>

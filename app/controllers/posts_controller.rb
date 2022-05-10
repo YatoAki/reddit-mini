@@ -9,21 +9,25 @@ class PostsController < ApplicationController
     def create
       @post = @sub.posts.new(post_params)
       @post.author = current_user
-      if @post.save
-        redirect_to sub_posts_path(@post)
-      else
-        render :new, status: :unprocessable_entity
-      end
+      @post.save
+      redirect_to sub_path(@sub)
     end
 
-    def new
-      @post = Post.new
+    def destroy
+      @post = @sub.posts.find(params[:id])
+      @post.destroy
+      redirect_to sub_path(@sub), status: :see_other
     end
+
 
     private
 
     def get_sub
       @sub = Sub.find(params[:sub_id])
+    end
+
+    def post_params
+      params.require(:post).permit(:title,:content)
     end
 
 end
